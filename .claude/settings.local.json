@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth:*)",
+      "Bash(gh api:*)",
+      "Bash(gh org list:*)",
+      "Bash(gh repo create:*)",
+      "WebSearch",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: Civico23 band website\n\nHand-drawn sketch style single-page site with all sections:\nHero, Chi Siamo, La Band, La Storia, Borseggi Urbani, Eventi, Contatti.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git rm:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)"
+    ]
+  }
+}
