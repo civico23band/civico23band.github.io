@@ -347,6 +347,17 @@ a { color: var(--burnt); text-decoration: none; }
   letter-spacing: 0.08em;
 }
 
+.band-note {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 28px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* --- Timeline --- */
 .timeline {
   max-width: 650px;
@@ -511,9 +522,17 @@ a { color: var(--burnt); text-decoration: none; }
   margin-bottom: 14px;
 }
 
+.album-note {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  font-style: italic;
+  margin-top: 28px;
+}
+
 .streaming-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 10px;
 }
 
@@ -567,16 +586,30 @@ a { color: var(--burnt); text-decoration: none; }
   box-shadow: -4px 4px 0 var(--burnt);
 }
 
-.evento-card:nth-child(1) { border-left: 6px solid var(--olive); }
-.evento-card:nth-child(2) { border-left: 6px solid var(--denim); }
-.evento-card:nth-child(3) { border-left: 6px solid var(--mustard); }
+.evento-card:nth-child(3n+2) { border-left: 6px solid var(--olive); }
+.evento-card:nth-child(3n+3) { border-left: 6px solid var(--denim); }
+.evento-card:nth-child(3n+4) { border-left: 6px solid var(--mustard); }
 
-.evento-year {
+.eventi-year-heading {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.6rem;
+  color: var(--burnt);
+  margin: 12px 0 0;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--burnt);
+}
+
+.eventi-year-heading:first-child {
+  margin-top: 0;
+}
+
+.evento-date {
+  font-family: var(--font-display);
+  font-size: 1rem;
   color: var(--burnt);
   white-space: nowrap;
-  min-width: 80px;
+  min-width: 90px;
+  text-align: center;
 }
 
 .evento-details h3 {
@@ -588,6 +621,27 @@ a { color: var(--burnt); text-decoration: none; }
 .evento-details p {
   color: var(--ink-light);
   font-size: 0.9rem;
+}
+
+.evento-card-cta {
+  border: 3px dashed var(--burnt);
+  background: #fff8f0;
+}
+
+.btn-evento-cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 20px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  color: var(--cream);
+  background: var(--burnt);
+  border-radius: 24px;
+  transition: background 0.2s;
+}
+
+.btn-evento-cta:hover {
+  background: var(--ink);
 }
 
 /* --- Contatti --- */
@@ -757,7 +811,7 @@ a { color: var(--burnt); text-decoration: none; }
   .timeline { padding-left: 40px; }
   .timeline-dot { left: -32px; width: 14px; height: 14px; }
 
-  .streaming-buttons { justify-content: center; }
+  .streaming-buttons { justify-content: center; flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
