@@ -78,6 +78,18 @@
     });
   }
 
+  // --- Band photo highlight on band-note member hover ---
+  var bandNoteMembers = document.querySelectorAll('.band-note-member[data-member]');
+  bandNoteMembers.forEach(function (el) {
+    var member = el.getAttribute('data-member');
+    el.addEventListener('mouseenter', function () {
+      if (bandPhoto) bandPhoto.className = 'band-photo highlight-' + member;
+    });
+    el.addEventListener('mouseleave', function () {
+      if (bandPhoto) bandPhoto.className = 'band-photo';
+    });
+  });
+
   // --- Stagger timeline items ---
   var timelineItems = document.querySelectorAll('.timeline-item');
   timelineItems.forEach(function (item, i) {

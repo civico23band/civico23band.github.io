@@ -367,6 +367,17 @@ a { color: var(--burnt); text-decoration: none; }
   clip-path: inset(0 15% 0 66%);
 }
 
+.band-photo.highlight-caterina-colotti .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 81% 0 0);
+}
+
+.band-note-member {
+  cursor: default;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
 /* --- Band Grid --- */
 .band-grid {
   display: grid;
