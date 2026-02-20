@@ -63,6 +63,21 @@
     card.style.transitionDelay = (i * 0.1) + 's';
   });
 
+  // --- Band photo highlight on card hover ---
+  var bandPhoto = document.getElementById('band-photo');
+  if (bandPhoto) {
+    bandCards.forEach(function (card) {
+      var member = card.getAttribute('data-member');
+      if (!member) return;
+      card.addEventListener('mouseenter', function () {
+        bandPhoto.className = 'band-photo highlight-' + member;
+      });
+      card.addEventListener('mouseleave', function () {
+        bandPhoto.className = 'band-photo';
+      });
+    });
+  }
+
   // --- Stagger timeline items ---
   var timelineItems = document.querySelectorAll('.timeline-item');
   timelineItems.forEach(function (item, i) {

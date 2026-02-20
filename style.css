@@ -140,7 +140,20 @@ a { color: var(--burnt); text-decoration: none; }
   position: relative;
   overflow: hidden;
   padding: 80px 24px 40px;
-  background: linear-gradient(160deg, var(--burnt) 0%, #d4693a 30%, var(--mustard) 70%, #c9a84a 100%);
+  background: var(--ink);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('hero-bg.jpg') center center / cover no-repeat;
+  opacity: 0.4;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(196,93,62,0.6) 0%, rgba(212,105,58,0.5) 30%, rgba(212,149,58,0.5) 70%, rgba(201,168,74,0.4) 100%);
 }
 
 .hero-sunburst {
@@ -163,6 +176,8 @@ a { color: var(--burnt); text-decoration: none; }
 .hero-content {
   position: relative;
   z-index: 2;
+  margin-top: auto;
+  padding-bottom: 24px;
 }
 
 .hero-badge {
@@ -174,8 +189,8 @@ a { color: var(--burnt); text-decoration: none; }
 }
 
 .hero-badge-inner {
-  width: 280px;
-  height: 280px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   border: 3px solid rgba(255,255,255,0.25);
   display: flex;
@@ -197,7 +212,7 @@ a { color: var(--burnt); text-decoration: none; }
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1;
   color: #fff;
   margin-bottom: 8px;
@@ -297,6 +312,59 @@ a { color: var(--burnt); text-decoration: none; }
   line-height: 1.9;
   text-align: center;
   color: var(--ink);
+}
+
+/* --- Band Photo --- */
+.band-photo {
+  max-width: 700px;
+  margin: 0 auto 36px;
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 6px 6px 0 var(--burnt);
+  position: relative;
+}
+
+.band-photo-bw {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.band-photo-color {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transition: opacity 0.4s ease, clip-path 0.4s ease;
+}
+
+.band-photo.highlight-levorato .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 33% 0 55%);
+}
+
+.band-photo.highlight-marchesi .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 45% 0 35%);
+}
+
+.band-photo.highlight-pomarolli .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 0 0 85%);
+}
+
+.band-photo.highlight-sato .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 66% 0 18%);
+}
+
+.band-photo.highlight-colotti .band-photo-color {
+  opacity: 1;
+  clip-path: inset(0 15% 0 66%);
 }
 
 /* --- Band Grid --- */
@@ -769,11 +837,11 @@ a { color: var(--burnt); text-decoration: none; }
   .hero { min-height: 90vh; padding-top: 64px; }
 
   .hero-badge-inner {
-    width: 220px;
-    height: 220px;
+    width: 170px;
+    height: 170px;
   }
 
-  .hero-title { font-size: 3rem; }
+  .hero-title { font-size: 2.4rem; }
 
   .section { padding: 60px 0; }
 
