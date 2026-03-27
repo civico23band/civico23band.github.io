@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="cinque-voci">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civico23 — Papà scappati di casa</title>
+  <meta name="description" content="Civico23 — un gruppo di papà scappati di casa. Musica originale e autobiografica sulla paternità di oggi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Quicksand', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Custom DaisyUI themes for our two palettes */
+    [data-theme="cinque-voci"] {
+      --p: 240 33% 19%;    /* #262040 */
+      --pf: 240 33% 14%;
+      --pc: 20 50% 96%;    /* #faf5f0 */
+      --s: 7 68% 64%;      /* #e06850 */
+      --sf: 7 68% 54%;
+      --sc: 20 50% 96%;
+      --a: 216 38% 47%;    /* #4a6fa5 */
+      --af: 216 38% 37%;
+      --ac: 20 50% 96%;
+      --n: 240 33% 19%;
+      --nf: 240 33% 14%;
+      --nc: 20 50% 96%;
+      --b1: 20 50% 96%;    /* #faf5f0 */
+      --b2: 20 40% 92%;
+      --b3: 20 30% 88%;
+      --bc: 240 33% 19%;
+      --in: 216 38% 47%;
+      --su: 120 30% 40%;
+      --wa: 40 70% 64%;    /* #e8b960 */
+      --er: 7 68% 54%;
+      --rounded-btn: 1.5rem;
+      --rounded-box: 1rem;
+      color-scheme: light;
+    }
+
+    [data-theme="dont-worry"] {
+      --p: 209 47% 19%;    /* #1a3048 */
+      --pf: 209 47% 14%;
+      --pc: 42 80% 98%;    /* #fefbf3 */
+      --s: 150 42% 52%;    /* #50b87a */
+      --sf: 150 42% 42%;
+      --sc: 42 80% 98%;
+      --a: 190 45% 65%;    /* #78c4d4 */
+      --af: 190 45% 55%;
+      --ac: 209 47% 19%;
+      --n: 209 47% 19%;
+      --nf: 209 47% 14%;
+      --nc: 42 80% 98%;
+      --b1: 42 80% 98%;    /* #fefbf3 */
+      --b2: 42 60% 94%;
+      --b3: 42 40% 90%;
+      --bc: 209 47% 19%;
+      --in: 190 45% 55%;
+      --su: 150 42% 42%;
+      --wa: 32 88% 62%;    /* #f5a54a */
+      --er: 0 60% 50%;
+      --rounded-btn: 1.5rem;
+      --rounded-box: 1rem;
+      color-scheme: light;
+    }
+
+    body { font-family: 'DM Sans', sans-serif; }
+
+    /* Logo icon */
+    .logo-icon {
+      display: inline-block;
+      height: 1em;
+      width: auto;
+      vertical-align: top;
+      position: relative;
+      top: 0.02em;
+      margin: 0 -0.05em;
+    }
+    .logo-icon svg { height: 100%; width: auto; display: block; }
+
+    /* Hero parallax */
+    .hero-parallax {
+      background: url('hero-bg.jpg') center center / cover no-repeat fixed;
+    }
+
+    /* Bento grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+    .bento-grid > :nth-child(1) { grid-column: span 4; }
+    .bento-grid > :nth-child(2) { grid-column: span 4; }
+    .bento-grid > :nth-child(3) { grid-column: span 4; }
+    .bento-grid > :nth-child(4) { grid-column: span 6; }
+    .bento-grid > :nth-child(5) { grid-column: span 6; }
+
+    @media (max-width: 768px) {
+      .bento-grid > * { grid-column: span 6 !important; }
+    }
+    @media (max-width: 480px) {
+      .bento-grid > * { grid-column: span 12 !important; }
+    }
+
+    /* Band card hover */
+    .band-member-card {
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .band-member-card:hover { transform: translateY(-4px); }
+    .band-member-card .member-role {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .band-member-card:hover .member-role {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Quote divider */
+    .quote-divider {
+      font-style: italic;
+      opacity: 0.6;
+    }
+
+    /* Floating music badge */
+    .music-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      animation: float-pulse 3s ease-in-out infinite;
+    }
+    @keyframes float-pulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Timeline horizontal */
+    .timeline-h {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .timeline-h::-webkit-scrollbar { height: 4px; }
+    .timeline-h::-webkit-scrollbar-thumb { background: oklch(var(--s)); border-radius: 4px; }
+
+    /* Band photo highlight */
+    .band-photo-wrap { position: relative; }
+    .band-photo-color {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transition: opacity 0.4s ease, clip-path 0.4s ease;
+    }
+    .band-photo-wrap.hl-levorato .band-photo-color { opacity: 1; clip-path: inset(0 33% 0 55%); }
+    .band-photo-wrap.hl-marchesi .band-photo-color { opacity: 1; clip-path: inset(0 45% 0 35%); }
+    .band-photo-wrap.hl-pomarolli .band-photo-color { opacity: 1; clip-path: inset(0 0 0 85%); }
+    .band-photo-wrap.hl-sato .band-photo-color { opacity: 1; clip-path: inset(0 66% 0 18%); }
+    .band-photo-wrap.hl-colotti .band-photo-color { opacity: 1; clip-path: inset(0 15% 0 66%); }
+    .band-photo-wrap.hl-caterina .band-photo-color { opacity: 1; clip-path: inset(0 81% 0 0); }
+
+    /* Smooth theme transition */
+    *, *::before, *::after {
+      transition: background-color 0.4s, color 0.4s, border-color 0.4s;
+    }
+  </style>
+</head>
+<body class="font-body bg-base-100 text-base-content">
+
+  <!-- ====== NAVBAR ====== -->
+  <div class="navbar bg-base-100/90 backdrop-blur-md fixed top-0 z-50 border-b-2 border-base-content/10">
+    <div class="navbar-start">
+      <a href="#hero" class="font-display font-bold text-xl flex items-center gap-0">
+        CIV<span class="logo-icon" id="nav-icon"></span>CO<span class="text-secondary">23</span>
+      </a>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal px-1 gap-1 font-body text-sm">
+        <li><a href="#chi-siamo" class="rounded-full">Chi Siamo</a></li>
+        <li><a href="#la-band" class="rounded-full">La Band</a></li>
+        <li><a href="#storia" class="rounded-full">La Storia</a></li>
+        <li><a href="#musica" class="rounded-full">Musica</a></li>
+        <li><a href="#eventi" class="rounded-full">Eventi</a></li>
+        <li><a href="#contatti" class="rounded-full">Contatti</a></li>
+      </ul>
+    </div>
+    <div class="navbar-end gap-2">
+      <!-- Palette switcher -->
+      <div class="flex items-center gap-2">
+        <button id="btn-cv" class="w-7 h-7 rounded-full border-2 border-base-content/20 overflow-hidden flex transition-all hover:scale-110 ring-2 ring-secondary ring-offset-2 ring-offset-base-100" title="Cinque Voci">
+          <span class="w-1/2 h-full" style="background:#262040"></span>
+          <span class="w-1/2 h-full" style="background:#e06850"></span>
+        </button>
+        <button id="btn-dw" class="w-7 h-7 rounded-full border-2 border-base-content/20 overflow-hidden flex transition-all hover:scale-110" title="Don't Worry">
+          <span class="w-1/2 h-full" style="background:#1a3048"></span>
+          <span class="w-1/2 h-full" style="background:#50b87a"></span>
+        </button>
+      </div>
+      <!-- Mobile menu -->
+      <div class="dropdown dropdown-end lg:hidden">
+        <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </div>
+        <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow-lg z-50 border border-base-content/10">
+          <li><a href="#chi-siamo">Chi Siamo</a></li>
+          <li><a href="#la-band">La Band</a></li>
+          <li><a href="#storia">La Storia</a></li>
+          <li><a href="#musica">Musica</a></li>
+          <li><a href="#eventi">Eventi</a></li>
+          <li><a href="#contatti">Contatti</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== HERO ====== -->
+  <section id="hero" class="hero min-h-screen relative flex items-center justify-center overflow-hidden">
+    <div class="hero-parallax absolute inset-0 opacity-40"></div>
+    <div class="absolute inset-0 bg-primary/80"></div>
+    <div class="relative z-10 text-center px-6 max-w-3xl">
+      <div class="font-display font-bold text-primary-content leading-none mb-6" style="font-size: clamp(3.5rem, 12vw, 7rem);">
+        CIV<span class="logo-icon" id="hero-icon"></span>CO<span class="text-secondary">23</span>
+      </div>
+      <p class="text-primary-content/70 uppercase tracking-[0.2em] text-sm font-medium mb-2">Papà scappati di casa</p>
+      <p class="text-primary-content/40 text-xs tracking-widest mb-10">Padova &middot; dal 2017</p>
+      <p class="text-primary-content/90 text-lg md:text-xl max-w-lg mx-auto mb-10 leading-relaxed">
+        Musica originale e autobiografica.<br>
+        Una scanzonata riflessione sulla paternità di oggi.
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="https://open.spotify.com/album/5Ol5Dsw4qOG2E9gXUQ6fKl" target="_blank" rel="noopener" class="btn btn-secondary btn-lg gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          Ascolta ora
+        </a>
+        <a href="#contatti" class="btn btn-outline btn-lg border-primary-content/30 text-primary-content hover:bg-primary-content/10 hover:border-primary-content/50">
+          Contattaci
+        </a>
+      </div>
+      <div class="mt-16">
+        <a href="#chi-siamo" class="text-primary-content/40 hover:text-primary-content/70 transition-colors">
+          <svg class="w-8 h-8 mx-auto animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CHI SIAMO ====== -->
+  <section id="chi-siamo" class="py-20 md:py-28 px-6">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">Chi Siamo</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-8"></div>
+      <p class="text-lg md:text-xl leading-relaxed text-base-content/80">
+        Cinque papà, cinque strumenti, una via di fuga.
+      </p>
+      <p class="mt-4 text-base leading-relaxed text-base-content/60">
+        Attraverso il nostro repertorio di musica originale e autobiografica proponiamo
+        una scanzonata riflessione sulla paternità di oggi con una
+        prospettiva ampia sul proprio domani pregresso&hellip;
+        qualsiasi cosa questo significhi.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== QUOTE ====== -->
+  <div class="py-8 text-center px-6">
+    <p class="quote-divider font-body text-lg md:text-xl text-base-content/40 max-w-md mx-auto">
+      &ldquo;Quando le fatiche familiari vincono&hellip;&rdquo;
+    </p>
+  </div>
+
+  <!-- ====== LA BAND ====== -->
+  <section id="la-band" class="bg-primary text-primary-content py-20 md:py-28 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-center mb-6">La Band</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-10 before:bg-secondary after:bg-secondary"></div>
+
+      <!-- Band photo -->
+      <div class="band-photo-wrap rounded-xl overflow-hidden mb-10 max-w-3xl mx-auto shadow-2xl" id="band-photo">
+        <img src="band-photo.jpg" alt="Civico 23 - foto di gruppo" class="w-full block">
+        <img src="band-photo-color.png" alt="" class="band-photo-color">
+      </div>
+
+      <!-- Bento grid members -->
+      <div class="bento-grid max-w-3xl mx-auto">
+
+        <div class="band-member-card card bg-primary-content/10 hover:bg-primary-content/15 cursor-default" data-member="sato">
+          <div class="card-body items-center text-center p-5">
+            <div class="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center mb-2">
+              <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg">Enrico Sato</h3>
+            <p class="member-role text-sm text-secondary uppercase tracking-wider font-medium">Basso</p>
+          </div>
+        </div>
+
+        <div class="band-member-card card bg-primary-content/10 hover:bg-primary-content/15 cursor-default" data-member="marchesi">
+          <div class="card-body items-center text-center p-5">
+            <div class="w-14 h-14 rounded-full bg-warning/20 flex items-center justify-center mb-2">
+              <svg class="w-6 h-6 text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg">Francesco Marchesi</h3>
+            <p class="member-role text-sm text-secondary uppercase tracking-wider font-medium">Chitarre</p>
+          </div>
+        </div>
+
+        <div class="band-member-card card bg-primary-content/10 hover:bg-primary-content/15 cursor-default" data-member="levorato">
+          <div class="card-body items-center text-center p-5">
+            <div class="w-14 h-14 rounded-full bg-secondary/20 flex items-center justify-center mb-2">
+              <svg class="w-6 h-6 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg">Francesco Levorato</h3>
+            <p class="member-role text-sm text-secondary uppercase tracking-wider font-medium">Voce</p>
+          </div>
+        </div>
+
+        <div class="band-member-card card bg-primary-content/10 hover:bg-primary-content/15 cursor-default" data-member="colotti">
+          <div class="card-body items-center text-center p-5">
+            <div class="w-14 h-14 rounded-full bg-info/20 flex items-center justify-center mb-2">
+              <svg class="w-6 h-6 text-info" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg">Andrea Colotti</h3>
+            <p class="member-role text-sm text-secondary uppercase tracking-wider font-medium">Batteria</p>
+          </div>
+        </div>
+
+        <div class="band-member-card card bg-primary-content/10 hover:bg-primary-content/15 cursor-default" data-member="pomarolli">
+          <div class="card-body items-center text-center p-5">
+            <div class="w-14 h-14 rounded-full bg-success/20 flex items-center justify-center mb-2">
+              <svg class="w-6 h-6 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2z"/></svg>
+            </div>
+            <h3 class="font-display font-bold text-lg">Andrea Pomarolli</h3>
+            <p class="member-role text-sm text-secondary uppercase tracking-wider font-medium">Fisarmonica e Tastiere</p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-center text-sm text-primary-content/50 mt-8 max-w-md mx-auto italic">
+        Per elevare il livello della nostra offerta lasciamo spazio alla bellissima voce di
+        <strong class="not-italic"><span class="cursor-default underline decoration-dotted underline-offset-4" data-member="caterina" id="caterina-link">Caterina Colotti</span></strong>.
+        In qualche occasione <strong class="not-italic">Giovanni Levorato</strong> ci ha accompagnato al glockenspiel &hearts;
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== QUOTE ====== -->
+  <div class="py-8 text-center px-6">
+    <p class="quote-divider font-body text-lg md:text-xl text-base-content/40 max-w-md mx-auto">
+      &ldquo;Sul diventare quarantenni&hellip;&rdquo;
+    </p>
+  </div>
+
+  <!-- ====== LA STORIA — horizontal timeline ====== -->
+  <section id="storia" class="py-20 md:py-28 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-center mb-6">La Storia</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-10"></div>
+
+      <div class="timeline-h pb-4">
+        <ul class="timeline timeline-horizontal">
+          <li>
+            <div class="timeline-start font-display font-bold text-secondary">2017</div>
+            <div class="timeline-middle">
+              <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/></svg>
+            </div>
+            <div class="timeline-end timeline-box bg-base-200 border-base-300 max-w-[220px]">
+              <h3 class="font-display font-bold mb-1">Si comincia</h3>
+              <p class="text-sm text-base-content/60">La band nasce per curarsi da esperienze musicali precedenti.</p>
+            </div>
+            <hr class="bg-secondary"/>
+          </li>
+          <li>
+            <hr class="bg-secondary"/>
+            <div class="timeline-start font-display font-bold text-secondary">2018–21</div>
+            <div class="timeline-middle">
+              <svg class="w-5 h-5 text-accent" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/></svg>
+            </div>
+            <div class="timeline-end timeline-box bg-base-200 border-base-300 max-w-[220px]">
+              <h3 class="font-display font-bold mb-1">Le canzoni prendono forma</h3>
+              <p class="text-sm text-base-content/60">Nascono <em class="font-bold not-italic">Vice Presidente</em>, <em class="font-bold not-italic">Part-time</em>, <em class="font-bold not-italic">Smonaura</em>, <em class="font-bold not-italic">Forty</em>&hellip;</p>
+            </div>
+            <hr class="bg-accent"/>
+          </li>
+          <li>
+            <hr class="bg-accent"/>
+            <div class="timeline-start font-display font-bold text-secondary">2022–25</div>
+            <div class="timeline-middle">
+              <svg class="w-5 h-5 text-warning" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/></svg>
+            </div>
+            <div class="timeline-end timeline-box bg-base-200 border-base-300 max-w-[220px]">
+              <h3 class="font-display font-bold mb-1">Le sagre all'Arcella</h3>
+              <p class="text-sm text-base-content/60">Primi live alle sagre del quartiere Arcella, Padova.</p>
+            </div>
+            <hr class="bg-warning"/>
+          </li>
+          <li>
+            <hr class="bg-warning"/>
+            <div class="timeline-start font-display font-bold text-secondary">2025</div>
+            <div class="timeline-middle">
+              <svg class="w-5 h-5 text-info" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/></svg>
+            </div>
+            <div class="timeline-end timeline-box bg-base-200 border-base-300 max-w-[220px]">
+              <h3 class="font-display font-bold mb-1">Un nuovo capitolo</h3>
+              <p class="text-sm text-base-content/60">Andrea Pomarolli si unisce. Due volte in Prato della Valle!</p>
+            </div>
+            <hr class="bg-info"/>
+          </li>
+          <li>
+            <hr class="bg-info"/>
+            <div class="timeline-start font-display font-bold text-secondary">2026</div>
+            <div class="timeline-middle">
+              <svg class="w-5 h-5 text-secondary" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="6"/></svg>
+            </div>
+            <div class="timeline-end timeline-box bg-secondary/10 border-secondary/30 max-w-[220px]">
+              <h3 class="font-display font-bold mb-1">Tutto da scrivere</h3>
+              <p class="text-sm text-base-content/60">Aiutaci a scrivere la storia di quest'anno!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== QUOTE ====== -->
+  <div class="py-8 text-center px-6">
+    <p class="quote-divider font-body text-lg md:text-xl text-base-content/40 max-w-md mx-auto">
+      &ldquo;Dal tempo pieno alla musicoterapia&hellip;&rdquo;
+    </p>
+  </div>
+
+  <!-- ====== MUSICA ====== -->
+  <section id="musica" class="bg-primary text-primary-content py-20 md:py-28 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-center mb-6">Borseggi Urbani</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-10 before:bg-secondary after:bg-secondary"></div>
+
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <!-- Album art -->
+        <div class="flex justify-center">
+          <div class="relative w-64 h-64 group cursor-pointer">
+            <!-- Vinyl behind -->
+            <svg viewBox="0 0 300 300" class="absolute top-0 left-6 w-60 h-60 group-hover:animate-spin" style="animation-duration: 4s;">
+              <circle cx="150" cy="150" r="145" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+              <circle cx="150" cy="150" r="120" fill="none" stroke="#252525" stroke-width="0.5"/>
+              <circle cx="150" cy="150" r="100" fill="none" stroke="#252525" stroke-width="0.5"/>
+              <circle cx="150" cy="150" r="80" fill="none" stroke="#252525" stroke-width="0.5"/>
+              <circle cx="150" cy="150" r="60" fill="none" stroke="#252525" stroke-width="0.5"/>
+              <circle cx="150" cy="150" r="8" fill="#444"/>
+            </svg>
+            <!-- Sleeve -->
+            <div class="relative z-10 w-60 rounded-lg overflow-hidden shadow-2xl border-2 border-primary-content/10">
+              <div class="w-full aspect-square bg-gradient-to-br from-secondary via-warning to-secondary flex flex-col items-center justify-center">
+                <span class="font-display font-bold text-3xl text-white tracking-wider">BORSEGGI</span>
+                <span class="font-display font-bold text-3xl text-white tracking-wider">URBANI</span>
+                <div class="w-32 h-px bg-white/40 my-3"></div>
+                <span class="font-display font-bold text-base text-white/80">CIVICO 23</span>
+                <span class="text-xs text-white/40 mt-4 tracking-widest">&#9733; PADOVA &#9733;</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Track list + streaming -->
+        <div>
+          <p class="text-primary-content/70 mb-6">Il primo album: storie di papà raccontate in musica.</p>
+
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3 py-2 border-b border-primary-content/10">
+              <span class="badge badge-secondary badge-sm font-bold">A1</span>
+              <span class="font-bold">Vice Presidente</span>
+              <span class="text-sm text-primary-content/40 ml-auto hidden sm:inline">Andrea e il consiglio pastorale</span>
+            </div>
+            <div class="flex items-center gap-3 py-2 border-b border-primary-content/10">
+              <span class="badge badge-secondary badge-sm font-bold">A2</span>
+              <span class="font-bold">Part-time</span>
+              <span class="text-sm text-primary-content/40 ml-auto hidden sm:inline">dal tempo pieno alla musicoterapia</span>
+            </div>
+            <div class="flex items-center gap-3 py-2 border-b border-primary-content/10">
+              <span class="badge badge-secondary badge-sm font-bold">B1</span>
+              <span class="font-bold">Smonaura</span>
+              <span class="text-sm text-primary-content/40 ml-auto hidden sm:inline">quando le fatiche familiari vincono</span>
+            </div>
+            <div class="flex items-center gap-3 py-2 border-b border-primary-content/10">
+              <span class="badge badge-secondary badge-sm font-bold">B2</span>
+              <span class="font-bold">Forty</span>
+              <span class="text-sm text-primary-content/40 ml-auto hidden sm:inline">sul diventare quarantenni</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-primary-content/40 italic mb-4">
+            La nostra hit di più grande successo è <strong class="not-italic">Forty</strong> &mdash; fidati, lo dicono le classifiche (di casa nostra).
+          </p>
+
+          <h3 class="font-display font-bold text-lg mb-3">Ascoltaci su</h3>
+          <div class="flex flex-wrap gap-2">
+            <a href="https://open.spotify.com/album/5Ol5Dsw4qOG2E9gXUQ6fKl" target="_blank" rel="noopener" class="btn btn-sm btn-outline border-primary-content/20 text-primary-content hover:bg-[#1DB954] hover:border-[#1DB954] hover:text-white gap-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+              Spotify
+            </a>
+            <a href="https://music.apple.com/search?term=civico+23" target="_blank" rel="noopener" class="btn btn-sm btn-outline border-primary-content/20 text-primary-content hover:bg-[#fc3c44] hover:border-[#fc3c44] hover:text-white gap-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.994 6.124a9.23 9.23 0 00-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043A5.022 5.022 0 0019.2.04a10.49 10.49 0 00-1.67-.04H6.47a10.49 10.49 0 00-1.67.04 5.022 5.022 0 00-2.374.851C1.308 1.624.563 2.624.246 3.934a9.23 9.23 0 00-.24 2.19C0 6.334 0 6.544 0 6.754v10.492c0 .21 0 .42.006.63a9.23 9.23 0 00.24 2.19c.317 1.31 1.062 2.31 2.18 3.043a5.022 5.022 0 002.374.851c.555.06 1.113.08 1.67.04h11.06c.557.04 1.115.02 1.67-.04a5.022 5.022 0 002.374-.851c1.118-.733 1.863-1.733 2.18-3.043a9.23 9.23 0 00.24-2.19c.006-.21.006-.42.006-.63V6.754c0-.21 0-.42-.006-.63zM17.5 17.5a.75.75 0 01-1.5 0v-6.908l-7.25 2.417V17.5a.75.75 0 01-1.5 0V8a.75.75 0 01.544-.721l8.75-2.917a.75.75 0 01.956.721v12.417z"/></svg>
+              Apple
+            </a>
+            <a href="https://soundcloud.com/civico23" target="_blank" rel="noopener" class="btn btn-sm btn-outline border-primary-content/20 text-primary-content hover:bg-[#ff5500] hover:border-[#ff5500] hover:text-white gap-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.282c.013.06.045.094.104.094.058 0 .09-.038.104-.094l.21-1.282-.21-1.332c-.014-.057-.046-.094-.104-.094m1.8-.472c-.063 0-.104.045-.116.104l-.218 1.846.218 1.793c.013.06.053.104.116.104.06 0 .103-.045.113-.104l.25-1.793-.25-1.846c-.01-.06-.053-.104-.113-.104m.9-.468c-.07 0-.114.048-.123.113l-.195 1.97.195 1.91c.01.065.053.113.123.113.068 0 .113-.048.12-.113l.223-1.91-.222-1.97c-.008-.065-.053-.113-.12-.113m.9-.198c-.077 0-.127.05-.132.12l-.17 2.047.17 1.97c.005.068.055.12.132.12.075 0 .127-.052.13-.12l.193-1.97-.192-2.047c-.003-.07-.055-.12-.13-.12m.932-.31c-.085 0-.138.058-.14.134L4.5 13.813l.157 2.007c.002.076.055.133.14.133.083 0 .137-.057.14-.133l.178-2.007-.178-2.072c-.003-.076-.057-.133-.14-.133m.922-.18c-.09 0-.148.063-.15.142l-.14 2.07.14 1.975c.002.08.06.143.15.143.088 0 .148-.063.15-.143l.16-1.975-.16-2.07c-.002-.08-.062-.142-.15-.142m.93-.144c-.1 0-.155.065-.158.148l-.126 2.058.126 1.952c.003.083.058.148.158.148.097 0 .155-.065.157-.148l.143-1.952-.143-2.058c-.002-.083-.06-.148-.157-.148m.926-.055c-.104 0-.165.072-.167.157l-.112 2.03.112 1.928c.002.085.063.157.167.157.103 0 .165-.072.167-.157l.127-1.928-.127-2.03c-.002-.085-.064-.157-.167-.157m.942.017c-.112 0-.174.075-.176.162l-.1 1.893.1 1.903c.002.087.064.162.176.162.11 0 .174-.075.176-.162l.112-1.903-.112-1.893c-.002-.087-.066-.162-.176-.162m.924.168c-.118 0-.184.08-.186.17l-.086 1.718.086 1.88c.002.09.068.17.186.17.116 0 .183-.08.186-.17l.098-1.88-.098-1.718c-.003-.09-.07-.17-.186-.17m.93-.065c-.124 0-.194.085-.195.178l-.074 1.79.074 1.86c.001.093.071.178.195.178.122 0 .194-.085.195-.178l.084-1.86-.084-1.79c-.001-.093-.073-.178-.195-.178m2.787-.41a2.618 2.618 0 00-1.19.286c-.245-2.794-2.6-4.982-5.443-4.982-.585 0-1.153.094-1.677.264-.196.063-.248.128-.25.254v9.84c.002.13.103.236.234.246h8.326c1.44 0 2.607-1.17 2.607-2.61 0-1.44-1.167-2.608-2.607-2.608"/></svg>
+              SoundCloud
+            </a>
+            <a href="https://www.youtube.com/watch?v=iBiMs0hb6J0&list=OLAK5uy_lfDQyOIOxntz_CLHsaqk-2tUEuVHcWjzU&index=2" target="_blank" rel="noopener" class="btn btn-sm btn-outline border-primary-content/20 text-primary-content hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white gap-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/><path d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z" fill="#fff"/></svg>
+              YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== EVENTI ====== -->
+  <section id="eventi" class="py-20 md:py-28 px-6">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display font-bold text-3xl md:text-4xl text-center mb-6">Eventi</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-10"></div>
+
+      <!-- CTA invitaci -->
+      <div class="card bg-secondary/10 border-2 border-dashed border-secondary mb-8">
+        <div class="card-body items-center text-center py-8">
+          <h3 class="font-display font-bold text-xl mb-2">Vuoi invitarci?</h3>
+          <p class="text-base-content/60 mb-4">Stiamo riempiendo il calendario 2026! Sagra, festa, evento — scrivici.</p>
+          <a href="#contatti" class="btn btn-secondary">Contattaci</a>
+        </div>
+      </div>
+
+      <!-- Past events — collapsed by default -->
+      <details class="collapse collapse-arrow bg-base-200 rounded-xl">
+        <summary class="collapse-title font-display font-bold text-lg">Concerti passati (2022–2025)</summary>
+        <div class="collapse-content">
+          <div class="space-y-1 pt-2">
+            <h4 class="font-display font-bold text-secondary mt-4 mb-2">2025</h4>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">22 Giu</span>
+              <div><strong>OPSA in Prato</strong> <span class="text-sm text-base-content/50">— Prato della Valle, Padova</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">1 Giu</span>
+              <div><strong>Sagra di San Bellino</strong> <span class="text-sm text-base-content/50">— Padova</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">18 Mag</span>
+              <div><strong>Fiera Campionaria</strong> <span class="text-sm text-base-content/50">— Padova</span></div>
+            </div>
+
+            <h4 class="font-display font-bold text-secondary mt-4 mb-2">2024</h4>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">7 Set</span>
+              <div><strong>Sagra di San Carlo</strong> <span class="text-sm text-base-content/50">— Arcella, Padova</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">19 Lug</span>
+              <div><strong>Sagra di Cadoneghe</strong> <span class="text-sm text-base-content/50">— Cadoneghe (PD)</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">1 Giu</span>
+              <div><strong>Sagra di San Bellino</strong> <span class="text-sm text-base-content/50">— Padova</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">21 Apr</span>
+              <div><strong>Festa della Porchetta</strong> <span class="text-sm text-base-content/50">— San Bellino, Padova</span></div>
+            </div>
+
+            <h4 class="font-display font-bold text-secondary mt-4 mb-2">2023</h4>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">16 Giu</span>
+              <div><strong>Sagra SS. Trinità</strong> <span class="text-sm text-base-content/50">— Padova</span></div>
+            </div>
+            <div class="flex items-center gap-4 py-2 border-b border-base-300">
+              <span class="badge badge-outline badge-sm min-w-[80px]">28 Mag</span>
+              <div><strong>Sagra di San Bellino</strong> <span class="text-sm text-base-content/50">— Padova</span></div>
+            </div>
+
+            <h4 class="font-display font-bold text-secondary mt-4 mb-2">2022</h4>
+            <div class="flex items-center gap-4 py-2">
+              <span class="badge badge-outline badge-sm min-w-[80px]">18 Set</span>
+              <div><strong>Sagra di San Carlo</strong> <span class="text-sm text-base-content/50">— Arcella, Padova</span></div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- ====== CONTATTI ====== -->
+  <section id="contatti" class="bg-primary text-primary-content py-20 md:py-28 px-6">
+    <div class="max-w-lg mx-auto text-center">
+      <h2 class="font-display font-bold text-3xl md:text-4xl mb-6">Scrivici</h2>
+      <div class="divider divider-secondary w-24 mx-auto mb-8 before:bg-secondary after:bg-secondary"></div>
+      <p class="text-primary-content/70 mb-8">
+        Vuoi invitarci alla tua sagra, festa, evento o semplicemente scambiare due chiacchiere?
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href="https://www.instagram.com/civico23band/" target="_blank" rel="noopener" class="btn btn-outline border-primary-content/30 text-primary-content hover:bg-[#E1306C] hover:border-[#E1306C] hover:text-white gap-2">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          @civico23band
+        </a>
+        <a href="mailto:civico23band.padova@gmail.com?subject=Info%20relative%20a%20Civico23" class="btn btn-secondary gap-2">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          Scrivici
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer footer-center p-8 bg-base-300 text-base-content">
+    <div>
+      <p class="font-display font-bold text-lg flex items-center gap-0">
+        CIV<span class="logo-icon" id="footer-icon"></span>CO<span class="text-secondary">23</span>
+      </p>
+      <p class="text-sm text-base-content/50">&copy; 2025 Civico23 &mdash; Papà scappati di casa, Padova</p>
+    </div>
+    <div class="flex gap-4">
+      <a href="https://www.instagram.com/civico23band/" target="_blank" rel="noopener" class="text-base-content/40 hover:text-secondary transition-colors" aria-label="Instagram">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://soundcloud.com/civico23" target="_blank" rel="noopener" class="text-base-content/40 hover:text-secondary transition-colors" aria-label="SoundCloud">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M1.175 12.225c-.051 0-.094.046-.101.1l-.233 2.154.233 2.105c.007.058.05.098.101.098.05 0 .09-.04.099-.098l.255-2.105-.27-2.154c-.009-.06-.05-.1-.1-.1m-.899.828c-.06 0-.091.037-.104.094L0 14.479l.172 1.282c.013.06.045.094.104.094.058 0 .09-.038.104-.094l.21-1.282-.21-1.332c-.014-.057-.046-.094-.104-.094m1.8-.472c-.063 0-.104.045-.116.104l-.218 1.846.218 1.793c.013.06.053.104.116.104.06 0 .103-.045.113-.104l.25-1.793-.25-1.846c-.01-.06-.053-.104-.113-.104m.9-.468c-.07 0-.114.048-.123.113l-.195 1.97.195 1.91c.01.065.053.113.123.113.068 0 .113-.048.12-.113l.223-1.91-.222-1.97c-.008-.065-.053-.113-.12-.113m.9-.198c-.077 0-.127.05-.132.12l-.17 2.047.17 1.97c.005.068.055.12.132.12.075 0 .127-.052.13-.12l.193-1.97-.192-2.047c-.003-.07-.055-.12-.13-.12m.932-.31c-.085 0-.138.058-.14.134L4.5 13.813l.157 2.007c.002.076.055.133.14.133.083 0 .137-.057.14-.133l.178-2.007-.178-2.072c-.003-.076-.057-.133-.14-.133m.922-.18c-.09 0-.148.063-.15.142l-.14 2.07.14 1.975c.002.08.06.143.15.143.088 0 .148-.063.15-.143l.16-1.975-.16-2.07c-.002-.08-.062-.142-.15-.142m.93-.144c-.1 0-.155.065-.158.148l-.126 2.058.126 1.952c.003.083.058.148.158.148.097 0 .155-.065.157-.148l.143-1.952-.143-2.058c-.002-.083-.06-.148-.157-.148m.926-.055c-.104 0-.165.072-.167.157l-.112 2.03.112 1.928c.002.085.063.157.167.157.103 0 .165-.072.167-.157l.127-1.928-.127-2.03c-.002-.085-.064-.157-.167-.157m.942.017c-.112 0-.174.075-.176.162l-.1 1.893.1 1.903c.002.087.064.162.176.162.11 0 .174-.075.176-.162l.112-1.903-.112-1.893c-.002-.087-.066-.162-.176-.162m.924.168c-.118 0-.184.08-.186.17l-.086 1.718.086 1.88c.002.09.068.17.186.17.116 0 .183-.08.186-.17l.098-1.88-.098-1.718c-.003-.09-.07-.17-.186-.17m.93-.065c-.124 0-.194.085-.195.178l-.074 1.79.074 1.86c.001.093.071.178.195.178.122 0 .194-.085.195-.178l.084-1.86-.084-1.79c-.001-.093-.073-.178-.195-.178m2.787-.41a2.618 2.618 0 00-1.19.286c-.245-2.794-2.6-4.982-5.443-4.982-.585 0-1.153.094-1.677.264-.196.063-.248.128-.25.254v9.84c.002.13.103.236.234.246h8.326c1.44 0 2.607-1.17 2.607-2.61 0-1.44-1.167-2.608-2.607-2.608"/></svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ====== FLOATING MUSIC BADGE ====== -->
+  <a href="https://open.spotify.com/album/5Ol5Dsw4qOG2E9gXUQ6fKl" target="_blank" rel="noopener"
+     class="music-float btn btn-circle btn-secondary btn-lg shadow-lg shadow-secondary/30 hover:scale-110 transition-transform"
+     title="Ascolta su Spotify">
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+  </a>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* === Guitarist SVG === */
+    function guitaristSVG(fill) {
+      return '<svg viewBox="770 60 580 810" xmlns="http://www.w3.org/2000/svg">' +
+        '<path transform="translate(924,311)" d="m0 0h13l72 10 20 3 15 4 21 10 15 10 10 9 7 10 14 24 19 32 13 22h31l48-2h13l10 4 8 9 2 7v7l-3 9-5 6-7 4-4 1-91 4h-19l-9-4-6-5-28-46-4-7-3 4-12 23-8 16-9 17-8 16-12 22-1 4 4 2 7 7 11 9 7 7 11 9 10 10 11 9 14 13 8 7 7 12 10 33 25 87 7 25v10l-4 11-3 4 52 1-9-27-14-46-17-56-20-65-13-43-15-49 3-1 9 2h15l23-1 9 29 17 55 34 111 17 55 14 47v13l-4 10-9 8-8 3h-451l-10-4-5-5-4-5-3-10 1-11 17-56 14-46 9-1 24-1h17l-2 9-14 46-12 39 290-1-6-10-20-65-12-40-7-23-1-4-4-2-17-14-14-11-13-10-16-13-13-10-18-14-13-10-13-11-9-13-5-14-1-12 2-15 5-13 17-33 12-23 23-45 9-17-36-5-13-2h-5l-7 8-11 14-14 18-22 28-6 5-9 3h-7l-10-4-7-8-2-6v-11l5-10 13-16 12-16 13-16 11-14 9-11 6-7z" fill="' + fill + '"/>' +
+        '<path transform="translate(998,97)" d="m0 0h21l23 2 25 5 27 9 20 9 14 8 15 10 14 11 15 14 9 9 9 11 10 14 11 18 11 23 9 27 5 23 2 16 1 14v14l-2 24-5 25-6 21-9 22-3 6-12 1-45 2 2-5 7-11 11-21 8-22 5-24 1-9v-31l-3-20-6-23-6-15-8-16-7-12-9-12-12-14-8-8-11-9-14-10-18-10-16-7-23-7-16-3-8-1h-34l-19 3-19 5-16 6-16 8-15 9-13 10-10 9-13 13-14 19-9 15-9 20-6 19-4 19-2 19v15l2 20 6 25 3 9-1 5-4 9-1 4v12l4 12 9 10 9 5 4 1 16 1 13 14 8 7 8 8 3 8v12l-6 21-18 59-11 36-1 1-23 1h-27l6-20 18-58 11-36-2-4-13-13-11-14-9-12-11-18-8-16-7-16-7-21-5-24-2-17v-38l3-21 6-26 7-19 9-20 12-20 10-14 11-13 14-15 8-7 15-12 17-11 27-14 25-9 20-5 20-3z" fill="' + fill + '"/>' +
+        '<path transform="translate(919,543)" d="m0 0 3 3 6 9 7 8 11 9 27 21-8 15-14 26-13 23-7 11-7 7-12 6-4 1-48 2-89 3h-13l-10-3-8-6-6-10-1-4v-13l4-9 7-8 8-4 12-2 117-5 3-1 16-36 18-42z" fill="' + fill + '"/>' +
+        '<path transform="translate(1100,235)" d="m0 0h20l13 4 14 9 8 9 7 13 3 13v13l-4 15-7 12-10 10-10 6-11 4-5 1h-16l-14-4-11-6-8-7-9-14-4-12-1-6v-11l3-14 6-12 10-11 13-8z" fill="' + fill + '"/>' +
+        '</svg>';
+    }
+
+    function updateIcons() {
+      var theme = document.documentElement.getAttribute('data-theme');
+      var darkColors = { 'cinque-voci': '#262040', 'dont-worry': '#1a3048' };
+      var lightColors = { 'cinque-voci': '#faf5f0', 'dont-worry': '#fefbf3' };
+      var dark = darkColors[theme] || '#262040';
+      var light = lightColors[theme] || '#faf5f0';
+
+      document.getElementById('hero-icon').innerHTML = guitaristSVG(light);
+      document.getElementById('nav-icon').innerHTML = guitaristSVG(dark);
+      document.getElementById('footer-icon').innerHTML = guitaristSVG(dark);
+    }
+
+    /* === Palette switcher === */
+    var btnCV = document.getElementById('btn-cv');
+    var btnDW = document.getElementById('btn-dw');
+
+    function setTheme(name) {
+      document.documentElement.setAttribute('data-theme', name);
+      btnCV.classList.toggle('ring-2', name === 'cinque-voci');
+      btnCV.classList.toggle('ring-secondary', name === 'cinque-voci');
+      btnCV.classList.toggle('ring-offset-2', name === 'cinque-voci');
+      btnCV.classList.toggle('ring-offset-base-100', name === 'cinque-voci');
+      btnDW.classList.toggle('ring-2', name === 'dont-worry');
+      btnDW.classList.toggle('ring-secondary', name === 'dont-worry');
+      btnDW.classList.toggle('ring-offset-2', name === 'dont-worry');
+      btnDW.classList.toggle('ring-offset-base-100', name === 'dont-worry');
+      updateIcons();
+    }
+
+    btnCV.addEventListener('click', function () { setTheme('cinque-voci'); });
+    btnDW.addEventListener('click', function () { setTheme('dont-worry'); });
+
+    // Initial
+    updateIcons();
+
+    /* === Band photo highlight === */
+    var bandPhoto = document.getElementById('band-photo');
+    document.querySelectorAll('[data-member]').forEach(function (el) {
+      var member = el.getAttribute('data-member');
+      el.addEventListener('mouseenter', function () {
+        if (bandPhoto) bandPhoto.className = 'band-photo-wrap rounded-xl overflow-hidden mb-10 max-w-3xl mx-auto shadow-2xl hl-' + member;
+      });
+      el.addEventListener('mouseleave', function () {
+        if (bandPhoto) bandPhoto.className = 'band-photo-wrap rounded-xl overflow-hidden mb-10 max-w-3xl mx-auto shadow-2xl';
+      });
+    });
+
+    /* === Smooth scroll for anchors === */
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  })();
+  </script>
+
+</body>
+</html>
