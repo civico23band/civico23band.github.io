@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civico23 — Logo Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #f5f0eb; color: #2a2a2a; line-height: 1.6; padding: 2rem 1.5rem; }
+  h1 { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.5rem; text-align: center; margin-bottom: 0.3rem; }
+  .subtitle { text-align: center; color: #777; margin-bottom: 1rem; font-size: 0.9rem; }
+  .brief { text-align: center; color: #999; margin-bottom: 2.5rem; font-size: 0.8rem; max-width: 680px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+
+  .proposal { max-width: 900px; margin: 0 auto 3.5rem; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); background: #fff; }
+  .proposal-header { padding: 1.2rem 1.5rem 0.5rem; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .proposal-name { font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 1.15rem; }
+  .proposal-pillar { font-size: 0.78rem; color: #999; font-style: italic; }
+
+  .logo-row { display: flex; }
+  .logo-cell { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 24px; min-height: 180px; }
+
+  .variants { padding: 20px 24px; display: flex; gap: 16px; align-items: center; justify-content: center; flex-wrap: wrap; background: #fafaf8; border-top: 1px solid #f0ece6; }
+  .variant-label { font-size: 0.65rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.1em; margin-right: 4px; }
+
+  .sizes { padding: 16px 24px; display: flex; gap: 24px; align-items: flex-end; justify-content: center; background: #fafaf8; border-top: 1px solid #f0ece6; }
+  .size-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .size-label { font-size: 0.6rem; color: #bbb; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  .why-section { padding: 1rem 1.5rem 1.2rem; font-size: 0.82rem; color: #666; border-top: 1px solid #eee; line-height: 1.6; }
+  .why-section strong { color: #444; }
+  .why-section ul { margin-top: 6px; padding-left: 18px; }
+  .why-section li { margin-bottom: 3px; }
+
+  .placement { max-width: 900px; margin: 0 auto 3rem; padding: 20px 28px; background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .placement h3 { font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .placement p { font-size: 0.85rem; color: #666; margin-bottom: 4px; }
+  .placement code { background: #f5f0eb; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+
+  .checklist { max-width: 900px; margin: 0 auto 3rem; padding: 20px 28px; background: #fff; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+  .checklist h3 { font-family: 'Quicksand', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .checklist table { width: 100%; font-size: 0.82rem; border-collapse: collapse; }
+  .checklist td { padding: 4px 8px; border-bottom: 1px solid #f0f0f0; }
+  .checklist td:first-child { font-weight: 600; color: #555; width: 140px; }
+
+  @media (max-width: 600px) {
+    .logo-row { flex-direction: column; }
+    body { padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Civico23 — 3 Proposte Logo</h1>
+<p class="subtitle">6 concept basati sui 4 pilastri del Brand Brief</p>
+<p class="brief">
+  Posizionamento: B2C, friendly, approachable. Target: genitori 35-50.<br>
+  Pilastri: Autenticità Autobiografica · Leggerezza con Sostanza · Coralità · Evoluzione.<br>
+  Palette di riferimento: Leggerezza Seria. Font: Quicksand Bold.
+</p>
+
+<div id="proposals"></div>
+
+<!-- Placement recommendation (from skill) -->
+<div class="placement">
+  <h3>Posizionamento consigliato</h3>
+  <p><strong>Top-left</strong> nel sito — 89% brand recall vs posizione destra. Link a homepage con <code>&lt;a href="/"&gt;</code>.</p>
+  <p><strong>Eccezione</strong>: centrato nella hero della landing page, dove il logo è elemento focale.</p>
+  <p><strong>Formato</strong>: SVG per scalabilità. Alt text: <code>alt="Civico23"</code> (non "logo").</p>
+</div>
+
+<!-- Accessibility checklist (from skill) -->
+<div class="checklist">
+  <h3>Checklist accessibilità</h3>
+  <table>
+    <tr><td>Alt text</td><td>Descrittivo: "Civico23" o "Civico23 — Papà scappati di casa"</td></tr>
+    <tr><td>Contrasto</td><td>Testato su sfondo chiaro e scuro (vedi varianti sopra)</td></tr>
+    <tr><td>Focus</td><td>Il link del logo riceve focus state visibile</td></tr>
+    <tr><td>Touch target</td><td>Minimo 44x44px su mobile</td></tr>
+    <tr><td>Clear space</td><td>Margine minimo = altezza della "C" su tutti i lati</td></tr>
+    <tr><td>Dimensione minima</td><td>Monogram: 24px · Logotipo: 100px larghezza</td></tr>
+    <tr><td>Responsive</td><td>Testato a 375px, 768px, 1024px</td></tr>
+  </table>
+</div>
+
+<script>
+  const P = {
+    dark: '#2a2540',
+    light: '#fff8f2',
+    accent: '#ff8c42',
+    accent2: '#6c5b9e',
+    mid: '#ffd166',
+  };
+
+  const proposals = [
+    {
+      name: 'Proposta A — "Le 5 Linee"',
+      pillar: 'Pilastro: Coralità — 5 voci, 5 storie, un suono',
+      why: 'La "O" di CIVICO contiene 5 linee orizzontali che rappresentano le 5 voci della band. Le linee formano un pentagramma stilizzato — musica senza essere didascalico. Il logo comunica: siamo un gruppo, non un solista.',
+      points: [
+        'Le 5 linee nella "O" funzionano come metafora visiva (5 membri = 5 righi musicali)',
+        'Il "23" in accent color chiude la parola — CIVICO23 si legge come un\'unica unità',
+        'Monogram: la "O" con le 5 linee — riconoscibile anche come favicon',
+        'Scalabile: le linee restano leggibili anche a 24px',
+        'Nessun elemento figurativo complesso — facile da riprodurre su merch, poster, video',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="75" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${dark}" letter-spacing="-1">CIVIC</text>
+          <g transform="translate(250, 16)">
+            <circle cx="24" cy="30" r="28" fill="none" stroke="${dark}" stroke-width="6"/>
+            <line x1="8" y1="18" x2="40" y2="18" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="8" y1="24" x2="40" y2="24" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="8" y1="30" x2="40" y2="30" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="8" y1="36" x2="40" y2="36" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="8" y1="42" x2="40" y2="42" stroke="${accent}" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+          <text x="302" y="75" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${accent}" letter-spacing="-1">23</text>
+          <text x="0" y="96" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect width="60" height="60" rx="12" fill="${accent}"/>
+          <circle cx="30" cy="24" r="14" fill="none" stroke="${light}" stroke-width="3"/>
+          <line x1="20" y1="18" x2="40" y2="18" stroke="${light}" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="20" y1="22" x2="40" y2="22" stroke="${light}" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="20" y1="26" x2="40" y2="26" stroke="${light}" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="20" y1="30" x2="40" y2="30" stroke="${light}" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <line x1="20" y1="34" x2="40" y2="34" stroke="${light}" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <text x="30" y="52" font-family="Quicksand, sans-serif" font-weight="700" font-size="14" fill="${light}" text-anchor="middle">23</text>
+        </svg>`,
+    },
+    {
+      name: 'Proposta B — "La Porta Aperta"',
+      pillar: 'Pilastro: Autenticità — Cantiamo quello che viviamo',
+      why: 'La "O" di CIVICO diventa un arco — una porta di casa aperta. Il civico 23 è l\'indirizzo da cui si esce (scappati di casa) e da cui si entra (il pubblico). L\'arco richiama i portici padovani.',
+      points: [
+        'Il nome "Civico23" diventa letterale: è l\'indirizzo, la porta',
+        'L\'arco/porta è un elemento architettonico padovano — i portici',
+        'Caldo e accogliente, non tecnico o freddo',
+        'Monogram: l\'arco con "23" dentro — funziona come favicon e badge social',
+        'La porta "aperta" (senza base) comunica accoglienza e invito',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="75" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${dark}" letter-spacing="-1">CIVIC</text>
+          <g transform="translate(250, 12)">
+            <path d="M4,68 L4,26 Q4,2 28,2 Q52,2 52,26 L52,68" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round"/>
+          </g>
+          <text x="306" y="75" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${accent}" letter-spacing="-1">23</text>
+          <text x="0" y="96" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect width="60" height="60" rx="12" fill="${dark}"/>
+          <path d="M16,50 L16,24 Q16,8 30,8 Q44,8 44,24 L44,50" stroke="${accent}" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="30" y="44" font-family="Quicksand, sans-serif" font-weight="700" font-size="20" fill="${light}" text-anchor="middle">23</text>
+        </svg>`,
+    },
+    {
+      name: 'Proposta C — "L\'Onda Sonora"',
+      pillar: 'Pilastro: Leggerezza con Sostanza — Ridiamo di cose serie',
+      why: 'Un\'onda sonora stilizzata corre sotto la scritta CIVICO 23, come un equalizer o una vibrazione vocale. Il suono è il filo conduttore: 5 voci che vibrano insieme. L\'onda è leggera ma ha sostanza fisica — come le canzoni della band.',
+      points: [
+        'L\'onda sonora è universale: musica, voce, vibrazione — senza essere didascalico',
+        'La curva sotto il logotipo aggiunge movimento e dinamismo',
+        'Può animarsi nei video e nelle stories — grande potenziale multimediale',
+        'Lo spazio tra CIVICO e 23 crea respiro e leggibilità',
+        'Monogram: il "C23" con una piccola onda — riconoscibile come waveform',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 105" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="65" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${dark}" letter-spacing="-1">CIVICO</text>
+          <text x="298" y="65" font-family="Quicksand, sans-serif" font-weight="700" font-size="68" fill="${accent}" letter-spacing="-1">23</text>
+          <path d="M0,82 Q35,68 70,82 Q105,96 140,82 Q175,68 210,82 Q245,96 280,82 Q315,68 350,82 Q385,96 420,82" stroke="${accent}" stroke-width="3" fill="none" opacity="0.3" stroke-linecap="round"/>
+          <text x="0" y="102" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect width="60" height="60" rx="12" fill="${accent}"/>
+          <path d="M6,38 Q15,30 24,38 Q33,46 42,38 Q51,30 54,38" stroke="${light}" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+          <text x="30" y="30" font-family="Quicksand, sans-serif" font-weight="700" font-size="11" fill="${light}" text-anchor="middle" opacity="0.7">C</text>
+          <text x="30" y="50" font-family="Quicksand, sans-serif" font-weight="700" font-size="22" fill="${light}" text-anchor="middle">23</text>
+        </svg>`,
+    },
+    {
+      name: 'Proposta D — "Il Numero Civico"',
+      pillar: 'Pilastro: Autenticità — La casa da cui si esce',
+      why: 'Una targhetta smaltata col numero 23, come quelle vere sulle case venete. CIVICO scritto sopra come indirizzo. Identità locale fortissima — chiunque sia passato per un borgo italiano riconosce quel formato. Il logo È un indirizzo.',
+      points: [
+        'Richiamo diretto alle targhe in ceramica delle case venete — radici padovane',
+        'Il formato "numero civico" rende il nome letterale e memorabile',
+        'La cornice rettangolare con bordo arrotondato è iconica e riproducibile',
+        'Funziona benissimo come adesivo, patch, spilla, targa da palco',
+        'Monogram: la targhetta sola — riconoscibile istantaneamente',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="72" font-family="Quicksand, sans-serif" font-weight="700" font-size="56" fill="${dark}" letter-spacing="-0.5">CIVICO</text>
+          <g transform="translate(270, 4)">
+            <rect x="0" y="0" width="80" height="88" rx="6" fill="none" stroke="${accent}" stroke-width="4"/>
+            <rect x="6" y="6" width="68" height="76" rx="3" fill="none" stroke="${accent}" stroke-width="1.5" opacity="0.4"/>
+            <text x="40" y="62" font-family="Quicksand, sans-serif" font-weight="700" font-size="48" fill="${accent}" text-anchor="middle">23</text>
+          </g>
+          <text x="0" y="96" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect x="4" y="4" width="52" height="52" rx="6" fill="${accent}"/>
+          <rect x="9" y="9" width="42" height="42" rx="3" fill="none" stroke="${light}" stroke-width="1.5" opacity="0.4"/>
+          <text x="30" y="40" font-family="Quicksand, sans-serif" font-weight="700" font-size="28" fill="${light}" text-anchor="middle">23</text>
+        </svg>`,
+    },
+    {
+      name: 'Proposta E — "L\'Equalizer"',
+      pillar: 'Pilastro: Coralità — 5 voci che suonano insieme',
+      why: '5 barre verticali di altezza diversa formano un equalizer stilizzato. Ogni barra è un membro della band — altezze diverse, stesso ritmo. Sotto: CIVICO 23. Moderno, musicale, animabile.',
+      points: [
+        '5 barre = 5 membri — la coralità diventa grafica',
+        'L\'equalizer è universalmente riconosciuto come "suono/musica"',
+        'Animabile: le barre possono pulsare nei video e nelle stories',
+        'Nessun elemento figurativo (niente chitarre, note, microfoni) — più elegante',
+        'Le barre funzionano anche come pattern decorativo per merch e sfondi',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="72" font-family="Quicksand, sans-serif" font-weight="700" font-size="56" fill="${dark}" letter-spacing="-0.5">CIVICO</text>
+          <g transform="translate(268, 8)">
+            <rect x="0" y="30" width="8" height="52" rx="4" fill="${accent}" opacity="0.7"/>
+            <rect x="14" y="14" width="8" height="68" rx="4" fill="${accent}"/>
+            <rect x="28" y="22" width="8" height="60" rx="4" fill="${accent}" opacity="0.85"/>
+            <rect x="42" y="8" width="8" height="74" rx="4" fill="${accent}" opacity="0.7"/>
+            <rect x="56" y="18" width="8" height="64" rx="4" fill="${accent}" opacity="0.9"/>
+          </g>
+          <text x="346" y="72" font-family="Quicksand, sans-serif" font-weight="700" font-size="56" fill="${accent}" letter-spacing="-0.5">23</text>
+          <text x="0" y="96" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect width="60" height="60" rx="12" fill="${dark}"/>
+          <rect x="10" y="22" width="5" height="24" rx="2.5" fill="${accent}" opacity="0.7"/>
+          <rect x="19" y="14" width="5" height="32" rx="2.5" fill="${accent}"/>
+          <rect x="28" y="18" width="5" height="28" rx="2.5" fill="${accent}" opacity="0.85"/>
+          <rect x="37" y="10" width="5" height="36" rx="2.5" fill="${accent}" opacity="0.7"/>
+          <rect x="46" y="16" width="5" height="30" rx="2.5" fill="${accent}" opacity="0.9"/>
+          <text x="30" y="56" font-family="Quicksand, sans-serif" font-weight="700" font-size="10" fill="${light}" text-anchor="middle" opacity="0.7">CIVICO 23</text>
+        </svg>`,
+    },
+    {
+      name: 'Proposta F — "Il Cerchio Aperto"',
+      pillar: 'Pilastro: Evoluzione — Il brand cresce con noi',
+      why: 'Un cerchio quasi chiuso — come un vinile, un abbraccio, o un anello — con un\'apertura. L\'apertura è la "fuga" da casa. Dentro: 23. Fuori: CIVICO. Doppio significato: cerchio = unità del gruppo, apertura = evoluzione, non siamo chiusi.',
+      points: [
+        'Il cerchio aperto gioca sul doppio senso: unità + fuga/libertà',
+        'Richiama il vinile (musica) e l\'abbraccio (famiglia)',
+        'L\'apertura comunica evoluzione: "non siamo congelati nel 2017"',
+        'Elegante e minimale — funziona in qualsiasi dimensione',
+        'Monogram: il cerchio aperto con 23 — fortemente iconico',
+      ],
+      renderMain: (dark, light, accent) => `
+        <svg viewBox="0 0 440 100" xmlns="http://www.w3.org/2000/svg" width="360">
+          <text x="0" y="72" font-family="Quicksand, sans-serif" font-weight="700" font-size="56" fill="${dark}" letter-spacing="-0.5">CIVICO</text>
+          <g transform="translate(310, 6)">
+            <path d="M44,80 A38,38 0 1 1 44,8" stroke="${accent}" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <text x="34" y="55" font-family="Quicksand, sans-serif" font-weight="700" font-size="36" fill="${accent}" text-anchor="middle">23</text>
+          </g>
+          <text x="0" y="96" font-family="DM Sans, sans-serif" font-weight="500" font-size="10.5" fill="${dark}" opacity="0.5" letter-spacing="5.5">PAPÀ SCAPPATI DI CASA</text>
+        </svg>`,
+      renderMonogram: (dark, light, accent) => `
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+          <rect width="60" height="60" rx="12" fill="${dark}"/>
+          <path d="M40,48 A18,18 0 1 1 40,12" stroke="${accent}" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="28" y="36" font-family="Quicksand, sans-serif" font-weight="700" font-size="18" fill="${light}" text-anchor="middle">23</text>
+        </svg>`,
+    },
+  ];
+
+  const container = document.getElementById('proposals');
+
+  proposals.forEach((prop, i) => {
+    const sizes = [180, 120, 60, 32];
+    const sizeLabels = ['Header', 'Nav', 'Badge', 'Favicon'];
+
+    container.insertAdjacentHTML('beforeend', `
+      <div class="proposal">
+        <div class="proposal-header">
+          <span class="proposal-name">${prop.name}</span>
+          <span class="proposal-pillar">${prop.pillar}</span>
+        </div>
+
+        <!-- Main logo on dark + light -->
+        <div class="logo-row">
+          <div class="logo-cell" style="background:${P.dark};">
+            ${prop.renderMain(P.light, P.dark, P.accent)}
+          </div>
+          <div class="logo-cell" style="background:${P.light};">
+            ${prop.renderMain(P.dark, P.light, P.accent)}
+          </div>
+        </div>
+
+        <!-- Variants: monogram + monochrome -->
+        <div class="variants">
+          <span class="variant-label">Monogram</span>
+          ${prop.renderMonogram(P.dark, P.light, P.accent)}
+          <span style="width:16px;"></span>
+          <span class="variant-label">Monogram (invertito)</span>
+          ${prop.renderMonogram(P.light, P.dark, P.accent)}
+          <span style="width:16px;"></span>
+          <span class="variant-label">Monocromo</span>
+          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" width="48">
+            <rect width="60" height="60" rx="12" fill="#333"/>
+            <text x="30" y="42" font-family="Quicksand, sans-serif" font-weight="700" font-size="26" fill="#fff" text-anchor="middle">23</text>
+          </svg>
+        </div>
+
+        <!-- Size test -->
+        <div class="sizes">
+          ${sizes.map((s, j) => `
+            <div class="size-item">
+              <div style="width:${s}px; height:auto; display:flex; align-items:center; justify-content:center;">
+                ${j < 2
+                  ? `<div style="transform:scale(${s/300}); transform-origin:center;">${prop.renderMain(P.dark, P.light, P.accent)}</div>`
+                  : prop.renderMonogram(P.dark, P.light, P.accent).replace('width="48"', `width="${s}"`)
+                }
+              </div>
+              <span class="size-label">${sizeLabels[j]} (${s}px)</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Why -->
+        <div class="why-section">
+          <strong>Concept:</strong> ${prop.why}
+          <ul>
+            ${prop.points.map(p => `<li>${p}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `);
+  });
+</script>
+
+</body>
+</html>
