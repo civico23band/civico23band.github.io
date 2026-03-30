@@ -146,7 +146,7 @@ a { color: var(--burnt); text-decoration: none; }
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('hero-bg.jpg') center center / cover no-repeat;
+  background: url('img/hero-bg.jpg') center center / cover no-repeat;
   opacity: 0.4;
 }
 
