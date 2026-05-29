@@ -423,56 +423,8 @@
       <h2 class="font-display font-bold text-3xl md:text-4xl text-center mb-3">Eventi</h2>
       <div class="w-16 h-1 rounded mx-auto mb-10" style="background: var(--c-accent);"></div>
 
-      <!-- Prossimo evento -->
-      <div class="rounded-2xl p-8 mb-4 theme-transition" style="background: var(--c-dark); color: var(--c-light);">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="inline-block text-sm font-bold px-4 py-1 rounded-full" style="background: var(--c-warm); color: var(--c-dark);">22 Mar 2026</span>
-          <div class="text-center sm:text-left">
-            <h3 class="font-display font-bold text-xl">Artisti di strada in Prato della Valle</h3>
-            <p class="text-sm opacity-60">Live come artisti di strada in Prato della Valle, Padova</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl p-8 mb-4 theme-transition" style="background: var(--c-dark); color: var(--c-light);">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="inline-block text-sm font-bold px-4 py-1 rounded-full" style="background: var(--c-accent); color: var(--c-light);">16 Mag 2026</span>
-          <div class="text-center sm:text-left">
-            <h3 class="font-display font-bold text-xl">Sala Polivalente di San Carlo</h3>
-            <p class="text-sm opacity-60">Live assieme ad altre band nella Sala Polivalente di San Carlo, Padova</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl p-8 mb-4 theme-transition" style="background: var(--c-dark); color: var(--c-light);">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="inline-block text-sm font-bold px-4 py-1 rounded-full" style="background: var(--c-accent2); color: var(--c-light);">6 Giu 2026</span>
-          <div class="text-center sm:text-left">
-            <h3 class="font-display font-bold text-xl">Sagra della SS. Trinit&agrave;</h3>
-            <p class="text-sm opacity-60">Live alla sagra della Santissima Trinit&agrave;, Padova</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl p-8 mb-4 theme-transition" style="background: var(--c-dark); color: var(--c-light);">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="inline-block text-sm font-bold px-4 py-1 rounded-full" style="background: var(--c-warm); color: var(--c-dark);">20 Giu 2026</span>
-          <div class="text-center sm:text-left">
-            <h3 class="font-display font-bold text-xl">Sagra di Pontevigodarzere</h3>
-            <p class="text-sm opacity-60">Live alla sagra di Pontevigodarzere, Padova</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="rounded-2xl p-8 mb-4 theme-transition" style="background: var(--c-dark); color: var(--c-light);">
-        <div class="flex flex-col sm:flex-row items-center gap-4">
-          <span class="inline-block text-sm font-bold px-4 py-1 rounded-full" style="background: var(--c-accent); color: var(--c-light);">Set 2026</span>
-          <div class="text-center sm:text-left">
-            <h3 class="font-display font-bold text-xl">Sagra di San Carlo</h3>
-            <p class="text-sm opacity-60">Live alla sagra di San Carlo, quartiere Arcella, Padova</p>
-          </div>
-        </div>
-      </div>
+      <!-- Upcoming events rendered from events.json -->
+      <div id="upcoming-events"></div>
 
       <!-- CTA -->
       <div class="rounded-2xl p-8 text-center mb-8 theme-transition" style="border: 3px dashed var(--c-accent); background: rgba(0,0,0,0.03);">
@@ -482,63 +434,12 @@
       </div>
 
       <!-- Past events collapsible -->
-      <details class="rounded-2xl overflow-hidden" style="border: 2px solid rgba(0,0,0,0.1);">
-        <summary class="px-6 py-4 font-display font-bold text-lg cursor-pointer select-none" style="background: rgba(0,0,0,0.04);">
+      <details id="past-events" class="rounded-2xl overflow-hidden" style="border: 2px solid rgba(0,0,0,0.1);">
+        <summary id="past-events-summary" class="px-6 py-4 font-display font-bold text-lg cursor-pointer select-none" style="background: rgba(0,0,0,0.04);">
           Concerti passati (2022–2025)
         </summary>
-        <div class="px-6 py-4 space-y-1">
-          <h4 class="font-display font-bold mt-2 mb-2" style="color: var(--c-accent);">2025</h4>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">12 Ott</span>
-            <div><strong>Artisti di strada in Prato della Valle</strong> <span class="text-sm opacity-50">— prima volta come artisti di strada, Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">22 Giu</span>
-            <div><strong>OPSA in Prato</strong> <span class="text-sm opacity-50">— Prato della Valle, Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">1 Giu</span>
-            <div><strong>Sagra di San Bellino</strong> <span class="text-sm opacity-50">— Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">18 Mag</span>
-            <div><strong>Fiera Campionaria</strong> <span class="text-sm opacity-50">— Padova</span></div>
-          </div>
-
-          <h4 class="font-display font-bold mt-4 mb-2" style="color: var(--c-accent);">2024</h4>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">7 Set</span>
-            <div><strong>Sagra di San Carlo</strong> <span class="text-sm opacity-50">— Arcella, Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">19 Lug</span>
-            <div><strong>Sagra di Cadoneghe</strong> <span class="text-sm opacity-50">— Cadoneghe (PD)</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">1 Giu</span>
-            <div><strong>Sagra di San Bellino</strong> <span class="text-sm opacity-50">— Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">21 Apr</span>
-            <div><strong>Festa della Porchetta</strong> <span class="text-sm opacity-50">— San Bellino, Padova</span></div>
-          </div>
-
-          <h4 class="font-display font-bold mt-4 mb-2" style="color: var(--c-accent);">2023</h4>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">16 Giu</span>
-            <div><strong>Sagra SS. Trinit&agrave;</strong> <span class="text-sm opacity-50">— Padova</span></div>
-          </div>
-          <div class="flex items-center gap-4 py-2" style="border-bottom: 1px solid rgba(0,0,0,0.06);">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">28 Mag</span>
-            <div><strong>Sagra di San Bellino</strong> <span class="text-sm opacity-50">— Padova</span></div>
-          </div>
-
-          <h4 class="font-display font-bold mt-4 mb-2" style="color: var(--c-accent);">2022</h4>
-          <div class="flex items-center gap-4 py-2">
-            <span class="inline-block text-xs font-bold px-2 py-0.5 rounded" style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">18 Set</span>
-            <div><strong>Sagra di San Carlo</strong> <span class="text-sm opacity-50">— Arcella, Padova</span></div>
-          </div>
-        </div>
+        <!-- Past events rendered from events.json -->
+        <div id="past-events-list" class="px-6 py-4 space-y-1"></div>
       </details>
     </div>
   </section>
@@ -595,6 +496,148 @@
   <script>
   (function () {
     'use strict';
+
+    /* === Events: render upcoming + archive from events.json + JSON-LD === */
+    (function renderEvents() {
+      const MONTHS = ['Gen','Feb','Mar','Apr','Mag','Giu','Lug','Ago','Set','Ott','Nov','Dic'];
+      const PILL_COLORS = [
+        { bg: 'var(--c-warm)', fg: 'var(--c-dark)' },
+        { bg: 'var(--c-accent)', fg: 'var(--c-light)' },
+        { bg: 'var(--c-accent2)', fg: 'var(--c-light)' }
+      ];
+      const upcomingEl = document.getElementById('upcoming-events');
+      const archiveEl = document.getElementById('past-events-list');
+      const archiveDetails = document.getElementById('past-events');
+      const archiveSummary = document.getElementById('past-events-summary');
+      if (!upcomingEl || !archiveEl) return;
+
+      const today = (function () {
+        const d = new Date();
+        return d.getFullYear() + '-' +
+          String(d.getMonth() + 1).padStart(2, '0') + '-' +
+          String(d.getDate()).padStart(2, '0');
+      })();
+
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+      }
+
+      function formatDateLabel(date, approximateMonth, withYear) {
+        const parts = date.split('-');
+        const month = MONTHS[parseInt(parts[1], 10) - 1];
+        const day = parseInt(parts[2], 10);
+        const year = parts[0];
+        const dayMonth = approximateMonth ? month : day + ' ' + month;
+        return withYear ? dayMonth + ' ' + year : dayMonth;
+      }
+
+      function renderUpcoming(events) {
+        events.forEach(function (e, i) {
+          const color = PILL_COLORS[i % PILL_COLORS.length];
+          const card = document.createElement('div');
+          card.className = 'rounded-2xl p-8 mb-4 theme-transition';
+          card.style.cssText = 'background: var(--c-dark); color: var(--c-light);';
+          card.innerHTML =
+            '<div class="flex flex-col sm:flex-row items-center gap-4">' +
+              '<span class="inline-block text-sm font-bold px-4 py-1 rounded-full whitespace-nowrap" ' +
+              'style="background: ' + color.bg + '; color: ' + color.fg + ';">' +
+              escapeHtml(formatDateLabel(e.date, e.approximateMonth, true)) + '</span>' +
+              '<div class="text-center sm:text-left">' +
+                '<h3 class="font-display font-bold text-xl">' + escapeHtml(e.title) + '</h3>' +
+                (e.description ? '<p class="text-sm opacity-60">' + escapeHtml(e.description) + '</p>' : '') +
+              '</div>' +
+            '</div>';
+          upcomingEl.appendChild(card);
+        });
+      }
+
+      function renderArchive(events) {
+        let currentYear = null;
+        let isFirstHeading = true;
+        events.forEach(function (e) {
+          const year = e.date.slice(0, 4);
+          if (year !== currentYear) {
+            const h = document.createElement('h4');
+            h.className = 'font-display font-bold mb-2 ' + (isFirstHeading ? 'mt-2' : 'mt-4');
+            h.style.color = 'var(--c-accent)';
+            h.textContent = year;
+            archiveEl.appendChild(h);
+            currentYear = year;
+            isFirstHeading = false;
+          }
+          const row = document.createElement('div');
+          row.className = 'flex items-center gap-4 py-2';
+          row.style.borderBottom = '1px solid rgba(0,0,0,0.06)';
+          const summary = e.archiveSummary;
+          row.innerHTML =
+            '<span class="inline-block text-xs font-bold px-2 py-0.5 rounded" ' +
+            'style="background: var(--c-dark); color: var(--c-light); min-width: 60px; text-align: center;">' +
+            escapeHtml(formatDateLabel(e.date, e.approximateMonth, false)) +
+            '</span><div><strong>' + escapeHtml(e.title) + '</strong>' +
+            (summary ? ' <span class="text-sm opacity-50">— ' + escapeHtml(summary) + '</span>' : '') +
+            '</div>';
+          archiveEl.appendChild(row);
+        });
+      }
+
+      function updateArchiveSummary(events) {
+        if (!archiveSummary) return;
+        if (!events.length) {
+          if (archiveDetails) archiveDetails.style.display = 'none';
+          return;
+        }
+        const years = events.map(function (e) { return e.date.slice(0, 4); });
+        const min = years[years.length - 1];
+        const max = years[0];
+        archiveSummary.textContent = 'Concerti passati ' + (min === max ? '(' + min + ')' : '(' + min + '–' + max + ')');
+      }
+
+      function injectJsonLd(events) {
+        if (!events.length) return;
+        const graph = events.map(function (e) {
+          const obj = {
+            '@context': 'https://schema.org',
+            '@type': 'Event',
+            name: e.title,
+            startDate: e.date,
+            eventStatus: 'https://schema.org/EventScheduled',
+            eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+            location: {
+              '@type': 'Place',
+              name: 'Padova',
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Padova',
+                addressCountry: 'IT'
+              }
+            },
+            performer: { '@type': 'MusicGroup', name: 'Civico23' },
+            organizer: { '@type': 'Organization', name: 'Civico23' }
+          };
+          if (e.description) obj.description = e.description;
+          return obj;
+        });
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(graph);
+        document.head.appendChild(script);
+      }
+
+      fetch('events.json')
+        .then(function (r) { return r.json(); })
+        .then(function (events) {
+          events.sort(function (a, b) { return a.date.localeCompare(b.date); });
+          const upcoming = events.filter(function (e) { return e.date >= today; });
+          const past = events.filter(function (e) { return e.date < today; }).reverse();
+          renderUpcoming(upcoming);
+          renderArchive(past);
+          updateArchiveSummary(past);
+          injectJsonLd(upcoming);
+        })
+        .catch(function () { /* fail silently — sections stay empty */ });
+    })();
 
     /* === Mobile menu === */
     var mobileToggle = document.getElementById('mobile-toggle');
