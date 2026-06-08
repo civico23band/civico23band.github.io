@@ -265,12 +265,26 @@
       );
     }
 
+    function buildCredits(song) {
+      var lyricist = song.lyricsBy || 'Civico23';
+      var composer = song.musicBy || 'Civico23';
+      var lines = [];
+      if (lyricist === composer) {
+        lines.push('Testo e musica: <strong>' + escapeHtml(lyricist) + '</strong>');
+      } else {
+        lines.push('Testo: <strong>' + escapeHtml(lyricist) + '</strong>');
+        lines.push('Musica: <strong>' + escapeHtml(composer) + '</strong>');
+      }
+      if (song.album) lines.push('Album: <em>' + escapeHtml(song.album) + '</em>' + (song.year ? ' (' + escapeHtml(song.year) + ')' : ''));
+      else if (song.year) lines.push('Anno: ' + escapeHtml(song.year));
+      lines.push('&copy; Civico23');
+      return '<p class="lyrics-attrib">' + lines.join(' &middot; ') + '</p>';
+    }
+
     function buildItem(song) {
       var details = document.createElement('details');
       details.className = 'lyrics-item theme-transition';
       details.id = 'testo-' + song.slug;
-      var attribution = song.author || 'Civico23';
-      var year = song.year ? ', ' + escapeHtml(song.year) : '';
       details.innerHTML =
         '<summary>' +
           '<svg class="lyrics-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">' +
@@ -281,9 +295,7 @@
             (song.description ? '<p class="text-xs sm:text-sm opacity-50 truncate">' + escapeHtml(song.description) + '</p>' : '') +
           '</div>' +
         '</summary>' +
-        '<div class="lyrics-body">' + renderLyrics(song.lyrics) +
-          '<p class="lyrics-attrib">Testo e musica: ' + escapeHtml(attribution) + ' &copy;' + year + '</p>' +
-        '</div>';
+        '<div class="lyrics-body">' + renderLyrics(song.lyrics) + buildCredits(song) + '</div>';
       return details;
     }
 
