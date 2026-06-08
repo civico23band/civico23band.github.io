@@ -124,6 +124,44 @@
       transform: translateY(-3px);
       min-width: 12px;
     }
+
+    /* Album group heading */
+    .album-group { margin-top: 28px; }
+    .album-group:first-child { margin-top: 0; }
+    .album-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(38,32,64,0.18);
+    }
+    .album-heading h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--c-dark);
+    }
+    .album-heading .album-year { font-size: 0.78rem; opacity: 0.5; }
+    .album-heading.unreleased h3 { color: var(--c-accent2); font-style: italic; font-weight: 700; }
+
+    /* Album pill in song summary */
+    .album-pill {
+      display: inline-block;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--c-warm);
+      color: var(--c-dark);
+      white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .album-pill { font-size: 0.62rem; padding: 1px 8px; }
+    }
   </style>
 </head>
 <body class="font-body" style="background: var(--c-light); color: var(--c-dark);">
@@ -180,7 +218,7 @@
       <!-- Index / Table of contents -->
       <section class="mb-12 rounded-2xl p-6 md:p-8" style="background: rgba(255,255,255,0.5); border: 2px solid rgba(0,0,0,0.06);">
         <h2 class="font-display font-bold text-lg mb-4" style="color: var(--c-dark);">Indice</h2>
-        <ol id="lyrics-toc" class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm list-decimal list-inside" style="color: var(--c-dark);"></ol>
+        <div id="lyrics-toc" class="grid sm:grid-cols-2 gap-x-6 gap-y-1 text-sm" style="color: var(--c-dark);"></div>
       </section>
 
       <!-- Lyrics list rendered from lyrics.json -->
@@ -285,6 +323,9 @@
       var details = document.createElement('details');
       details.className = 'lyrics-item theme-transition';
       details.id = 'testo-' + song.slug;
+      var pill = song.album
+        ? '<span class="album-pill ml-2">' + escapeHtml(song.album) + '</span>'
+        : '';
       details.innerHTML =
         '<summary>' +
           '<svg class="lyrics-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">' +
@@ -294,30 +335,86 @@
             '<h3 class="font-display font-bold text-base sm:text-lg">' + escapeHtml(song.title) + '</h3>' +
             (song.description ? '<p class="text-xs sm:text-sm opacity-50 truncate">' + escapeHtml(song.description) + '</p>' : '') +
           '</div>' +
+          pill +
         '</summary>' +
         '<div class="lyrics-body">' + renderLyrics(song.lyrics) + buildCredits(song) + '</div>';
       return details;
     }
 
     function buildTocItem(song) {
-      var li = document.createElement('li');
-      li.className = 'py-0.5';
-      li.innerHTML =
+      var d = document.createElement('div');
+      d.innerHTML =
         '<a class="toc-link" href="#testo-' + song.slug + '">' +
           '<span class="font-medium">' + escapeHtml(song.title) + '</span>' +
           '<span class="toc-dots"></span>' +
         '</a>';
-      return li;
+      return d;
+    }
+
+    function groupByAlbum(songs) {
+      var groups = new Map();
+      for (var i = 0; i < songs.length; i++) {
+        var key = songs[i].album || '__unreleased__';
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(songs[i]);
+      }
+      // album years (for sorting + label): use min year within the group
+      var albums = [];
+      groups.forEach(function (list, key) {
+        if (key === '__unreleased__') return;
+        var years = list.map(function (s) { return s.year ? Number(s.year) : null; }).filter(function (y) { return y; });
+        albums.push({ key: key, list: list, year: years.length ? Math.min.apply(null, years) : null });
+      });
+      // sort albums by year ASC (oldest first), then alphabetically
+      albums.sort(function (a, b) {
+        if (a.year && b.year && a.year !== b.year) return a.year - b.year;
+        return a.key.localeCompare(b.key, 'it');
+      });
+      // append unreleased last
+      if (groups.has('__unreleased__')) {
+        albums.push({ key: '__unreleased__', list: groups.get('__unreleased__'), year: null });
+      }
+      // sort songs within each group alphabetically
+      albums.forEach(function (g) {
+        g.list.sort(function (a, b) { return a.title.localeCompare(b.title, 'it'); });
+      });
+      return albums;
+    }
+
+    function renderGroups(groups) {
+      groups.forEach(function (g) {
+        var section = document.createElement('section');
+        section.className = 'album-group';
+        var isUnreleased = g.key === '__unreleased__';
+        var heading = document.createElement('div');
+        heading.className = 'album-heading' + (isUnreleased ? ' unreleased' : '');
+        heading.innerHTML =
+          '<h3>' + escapeHtml(isUnreleased ? 'Non ancora pubblicati' : g.key) + '</h3>' +
+          (!isUnreleased && g.year ? '<span class="album-year">' + g.year + '</span>' : '');
+        section.appendChild(heading);
+
+        var list = document.createElement('div');
+        list.className = 'space-y-3';
+        g.list.forEach(function (s) { list.appendChild(buildItem(s)); });
+        section.appendChild(list);
+        listEl.appendChild(section);
+
+        // TOC: subheading + items
+        if (tocEl) {
+          var tocHeader = document.createElement('div');
+          tocHeader.className = 'sm:col-span-2 mt-3 first:mt-0 font-display font-bold text-xs uppercase tracking-wider opacity-60';
+          tocHeader.style.color = isUnreleased ? 'var(--c-accent2)' : 'var(--c-dark)';
+          tocHeader.textContent = isUnreleased ? 'Non ancora pubblicati' : g.key;
+          tocEl.appendChild(tocHeader);
+          g.list.forEach(function (s) { tocEl.appendChild(buildTocItem(s)); });
+        }
+      });
     }
 
     fetch('lyrics.json')
       .then(function (r) { return r.json(); })
       .then(function (songs) {
-        songs.sort(function (a, b) { return a.title.localeCompare(b.title, 'it'); });
-        songs.forEach(function (s) {
-          listEl.appendChild(buildItem(s));
-          if (tocEl) tocEl.appendChild(buildTocItem(s));
-        });
+        renderGroups(groupByAlbum(songs));
         if (location.hash && location.hash.indexOf('#testo-') === 0) {
           var t = document.getElementById(location.hash.slice(1));
           if (t) { t.open = true; t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
