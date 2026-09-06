@@ -24,8 +24,13 @@
     "archiveSummary": "Padova"
   },
   {
-    "date": "2026-09-30",
-    "approximateMonth": true,
+    "date": "2026-09-11",
+    "title": "Sagra della Noce",
+    "description": "Live alla sagra della Noce, quartiere Arcella, Padova",
+    "archiveSummary": "Arcella, Padova"
+  },
+  {
+    "date": "2026-09-18",
     "title": "Sagra di San Carlo",
     "description": "Live alla sagra di San Carlo, quartiere Arcella, Padova",
     "archiveSummary": "Arcella, Padova"
